@@ -21,14 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="crimsonmountainassets" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="assetBundles\crimsonmountainassets" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
