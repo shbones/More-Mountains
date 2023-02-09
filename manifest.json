@@ -1,10 +1,13 @@
-﻿{
-	"name": "MyFirstMod",
-	"version_number": "1.0.0",
-	"website_url": "",
-	"description": "My first Mod",
-	"dependencies": [
-		"bbepis-BepInExPack-5.4.9",
-		"RiskofThunder-HookGenPatcher-1.2.1"
-	]
+{
+    "name": "MoreMountains",
+    "version_number": "1.0.7",
+    "website_url": "https://github.com/shbones/More-Mountains",
+    "description": "Add Variety with Alternate Mountain Shrines with Alternate Rewards.",
+    "dependencies": [
+	    "bbepis-BepInExPack-5.4.2103",
+		"RiskofThunder-R2API_Language-1.0.0",
+		"RiskofThunder-R2API_Prefab-1.0.1",
+		"RiskofThunder-R2API_Director-1.0.0",
+		"RiskofThunder-HookGenPatcher-1.2.3"
+    ]
 }

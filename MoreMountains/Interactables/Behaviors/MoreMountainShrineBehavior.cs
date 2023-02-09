@@ -15,8 +15,6 @@ namespace MoreMountains.Interactables
         public bool waitingForRefresh;
         public float refreshTimer = 0f;
         
-
-
         public void Start()
         {
             if (NetworkServer.active && Run.instance)

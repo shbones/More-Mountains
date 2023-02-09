@@ -18,12 +18,13 @@ Amber Shrine of the Mountain
 
 ## Known Issues
 * These shrines may not be affected by other mods that modify Shrine of the Mountain's behavior (to be clear nothing should *break*). I intend to address this as best as I can as I find different compatibility issues.
+* Currently incompatible with Artifact Of Potential due to how that mod hooks.
 
 ## Potential Future Work
-* Textures/Shaders - I don't think I got the shaders right and my unity skills are non existent, so would like to improve these at some point
 * Add Snowy/Sandy variants of shrines
 * Additional Shrines - plan to add Void and Lunar Shrines in the future
 * Additional Impact of Shrine beyond increasing the credit cost for added/varying difficulty
+* Change mountain shrine icon display color over the teleporter
 * Working on compatibility with other mods that affect Shrine of the Mountain. Please reach out to me if you notice issues here with your mod or others!
 * Open to suggestions!
 

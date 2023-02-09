@@ -61,7 +61,7 @@ namespace MoreMountains.Interactables
             InteractableModel = PrefabAPI.InstantiateClone(mountainShrine, PrefabName);
 
             var vanillaShrineBossBehavior = InteractableModel.GetComponent<ShrineBossBehavior>();
-            UnityEngine.Object.DestroyImmediate(vanillaShrineBossBehavior);
+            UnityEngine.Object.Destroy(vanillaShrineBossBehavior);
 
             InteractableBodyModelPrefab = InteractableModel;
             var purchaseInteraction = InteractableBodyModelPrefab.GetComponent<PurchaseInteraction>();
