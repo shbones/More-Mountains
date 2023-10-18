@@ -50,13 +50,13 @@ namespace MoreMountains.Interactables
             this.waitingForRefresh = true;
             if (TeleporterInteraction.instance)
             {
-                Log.LogInfo("Adding " + NumberOfMountainDirectorStacksToAdd + " mountain stacks.");
+                Log.LogDebug("Adding " + NumberOfMountainDirectorStacksToAdd + " mountain stacks.");
                 TeleporterInteraction.instance.AddShrineStack();
                 for (int i = 0; i < NumberOfMountainDirectorStacksToAdd; ++i)
                 {
                     ++TeleporterInteraction.instance.shrineBonusStacks;
                 }
-                Log.LogInfo("ShrineBonusStacks = " + TeleporterInteraction.instance.shrineBonusStacks);
+                Log.LogDebug("ShrineBonusStacks = " + TeleporterInteraction.instance.shrineBonusStacks);
             }
             CharacterBody component = interactor.GetComponent<CharacterBody>();
             Chat.SendBroadcastChat(new Chat.SubjectFormatChatMessage

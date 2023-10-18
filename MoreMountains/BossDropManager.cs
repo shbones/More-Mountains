@@ -1,4 +1,5 @@
-﻿using RoR2;
+﻿using MoreMountains.Utils.Compatibility;
+using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,11 @@ namespace MoreMountains
 {
     public class BossDropManager : NetworkBehaviour
     {
+        public static int NumberRedDropsForRun;
+        public static int NumberYellowDropsForRun;
+        public static int NumberRedDropsForStage;
+        public static int NumberYellowDropsForStage;
+
         private List<PickupIndex> _redAvailableDrops;
         private List<PickupIndex> _yellowAvailableDrops;
         private List<PickupIndex> _voidTier2AvailableDrops;
@@ -21,8 +27,7 @@ namespace MoreMountains
         private PickupIndex lunarPickupIndex;
 
         private Vector3 _teleporterBossPosition;
-        private int _numberRedDropsForThisTeleporterEvent;
-        private int _numberYellowDropsForThisTeleporterEvent;
+
 
         public static BossDropManager Instance { get; private set; }
 
@@ -54,19 +59,39 @@ namespace MoreMountains
         [Server]
         public void RedShrineActivated()
         {
-            _numberRedDropsForThisTeleporterEvent += 1 * Run.instance.participatingPlayerCount;
+            NumberRedDropsForStage += 1 * Run.instance.participatingPlayerCount;
+            if (RiskyArtifactsCompatibility.enabled)
+            {
+                RiskyArtifactsCompatibility.addRedStackIfArrognanceEnabled();
+            }
         }
 
         public void YellowShrineActivated()
         {
-            _numberYellowDropsForThisTeleporterEvent += 1 * Run.instance.participatingPlayerCount;
+            NumberYellowDropsForStage += 1 * Run.instance.participatingPlayerCount;
         }
 
         [Server]
-        private void ResetShrinesHit(RoR2.Stage obj)
+        private void ResetRunShrinesHit(Run obj)
         {
-            _numberRedDropsForThisTeleporterEvent = 0;
-            _numberYellowDropsForThisTeleporterEvent = 0;
+            NumberRedDropsForRun = 0;
+            NumberYellowDropsForRun = 0;
+            NumberRedDropsForRun = 0;
+            NumberYellowDropsForRun = 0;
+        }
+
+        [Server]
+        private void ResetStageShrinesHit(Stage obj)
+        {
+            if (RiskyArtifactsCompatibility.enabled)
+            {
+                RiskyArtifactsCompatibility.stageStartArroganceCompat();
+            }
+            else
+            {
+                NumberRedDropsForStage = 0;
+                NumberYellowDropsForStage = 0;
+            }
         }
 
         [Server]
@@ -78,14 +103,14 @@ namespace MoreMountains
             {
                 if (!self.scaleRewardsByPlayerCount)
                 {
-                    _numberRedDropsForThisTeleporterEvent /= Run.instance.participatingPlayerCount;
+                    NumberRedDropsForStage /= Run.instance.participatingPlayerCount;
                 }
-                if (_numberRedDropsForThisTeleporterEvent > 0)
+                if (NumberRedDropsForStage > 0)
                 {
                     int redDropIndex = UnityEngine.Random.Range(0, Run.instance.availableTier3DropList.Count - 1);
                     redPickupIndex = Run.instance.availableTier3DropList[redDropIndex];
                 }
-                if (_numberYellowDropsForThisTeleporterEvent > 0)
+                if (NumberYellowDropsForStage > 0)
                 {
                     int yellowDropIndex = UnityEngine.Random.Range(0, Run.instance.availableBossDropList.Count - 1);
                     yellowPickupIndex = Run.instance.availableBossDropList[yellowDropIndex];
@@ -99,16 +124,16 @@ namespace MoreMountains
         {
             if (position == _teleporterBossPosition)
             {
-                if (_numberRedDropsForThisTeleporterEvent > 0)
+                if (NumberRedDropsForStage > 0)
                 {
                     orig(redPickupIndex, position, velocity);
-                    --_numberRedDropsForThisTeleporterEvent;
+                    --NumberRedDropsForStage;
                     return;
                 }
-                if (_numberYellowDropsForThisTeleporterEvent > 0)
+                if (NumberYellowDropsForStage > 0)
                 {
                     orig(yellowPickupIndex, position, velocity);
-                    --_numberYellowDropsForThisTeleporterEvent;
+                    --NumberYellowDropsForStage;
                     return;
                 }
             }
@@ -117,7 +142,8 @@ namespace MoreMountains
 
         private void Hooks()
         {
-            Stage.onStageStartGlobal += ResetShrinesHit;
+            Run.onRunStartGlobal += ResetRunShrinesHit;
+            Stage.onStageStartGlobal += ResetStageShrinesHit;
             On.RoR2.BossGroup.Start += TrackTeleporterBoss;
             On.RoR2.PickupDropletController.CreatePickupDroplet_PickupIndex_Vector3_Vector3 += ReplaceTeleporterDropsIfNecessary;
         }
