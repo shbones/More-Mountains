@@ -50,7 +50,7 @@ namespace MoreMountains.Utils.Compatibility
                 int myMountainStacksPerRedShrine = MoreMountainsConfigManager.RedShrineMountainDifficultyStacks.Value;
                 if (myMountainStacksPerRedShrine > 1)
                 {
-                    int myTotalStacksFromRedShrine = (myMountainStacksPerRedShrine - 1) * BossDropManager.NumberRedDropsForRun;
+                    int myTotalStacksFromRedShrine = myMountainStacksPerRedShrine * BossDropManager.NumberRedDropsForRun;
                     for (int i = 0; i < myTotalStacksFromRedShrine; ++i)
                     {
                         ++TeleporterInteraction.instance.shrineBonusStacks;
@@ -60,7 +60,7 @@ namespace MoreMountains.Utils.Compatibility
                 int myMountainStacksPerYellowShrine = MoreMountainsConfigManager.YellowShrineMountainDifficultyStacks.Value;
                 if (myMountainStacksPerYellowShrine > 1)
                 {
-                    int myTotalStacksFromYellowShrine = (myMountainStacksPerYellowShrine - 1) * BossDropManager.NumberYellowDropsForRun;
+                    int myTotalStacksFromYellowShrine = myMountainStacksPerYellowShrine * BossDropManager.NumberYellowDropsForRun;
                     for (int i = 0; i < myTotalStacksFromYellowShrine; ++i)
                     {
                         ++TeleporterInteraction.instance.shrineBonusStacks;
