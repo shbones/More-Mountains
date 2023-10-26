@@ -76,21 +76,18 @@ namespace MoreMountains
         {
             NumberRedDropsForRun = 0;
             NumberYellowDropsForRun = 0;
-            NumberRedDropsForRun = 0;
-            NumberYellowDropsForRun = 0;
+            NumberRedDropsForStage = 0;
+            NumberYellowDropsForStage = 0;
         }
 
         [Server]
         private void ResetStageShrinesHit(Stage obj)
         {
+            NumberRedDropsForStage = 0;
+            NumberYellowDropsForStage = 0;
             if (RiskyArtifactsCompatibility.enabled)
             {
                 RiskyArtifactsCompatibility.stageStartArroganceCompat();
-            }
-            else
-            {
-                NumberRedDropsForStage = 0;
-                NumberYellowDropsForStage = 0;
             }
         }
 
