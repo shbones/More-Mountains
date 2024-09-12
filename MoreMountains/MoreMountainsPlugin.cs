@@ -12,7 +12,9 @@ namespace MoreMountains
 {
     //This attribute specifies that we have a dependency on R2API, as we're using it to add our item to the game.
     //You don't need this if you're not using R2API in your plugin, it's just to tell BepInEx to initialize R2API before this plugin so it's safe to use R2API.
-    [BepInDependency(R2API.R2API.PluginGUID)]
+    [BepInDependency(LanguageAPI.PluginGUID)]
+    [BepInDependency(PrefabAPI.PluginGUID)]
+    [BepInDependency(DirectorAPI.PluginGUID)]
     [BepInDependency("com.Moffein.RiskyArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
     //This attribute is required, and lists metadata for your plugin.
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
@@ -32,7 +34,7 @@ namespace MoreMountains
         //If we see this PluginGUID as it is on thunderstore, we will deprecate this mod. Change the PluginAuthor and the PluginName !
         public const string PluginAuthor = "shbones";
         public const string PluginName = "MoreMountains";
-        public const string PluginVersion = "1.1.0";
+        public const string PluginVersion = "1.1.1";
         public const string PluginGUID = PluginAuthor + "." + PluginName;
 
         //The Awake() method is run at the very start when the game is initialized.

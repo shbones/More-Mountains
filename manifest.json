@@ -1,8 +1,8 @@
 {
     "name": "MoreMountains",
-    "version_number": "1.0.7",
+    "version_number": "1.1.1",
     "website_url": "https://github.com/shbones/More-Mountains",
-    "description": "Add Variety with Alternate Mountain Shrines with Alternate Rewards.",
+    "description": "Alternate Mountain Shrines. SOTS Update!",
     "dependencies": [
 	    "bbepis-BepInExPack-5.4.2103",
 		"RiskofThunder-R2API_Language-1.0.0",
