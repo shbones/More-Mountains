@@ -16,6 +16,9 @@ Amber Shrine of the Mountain
 * Adds 400% director credits to the teleporter event (configurable)
 * Adds 1 yellow item to the teleporter rewards per player (**not configurable**)
 
+## Explicitly Supported Compatibility
+* RiskyArtifacts' Artifact of Arrogance
+
 ## Known Issues
 * These shrines may not be affected by other mods that modify Shrine of the Mountain's behavior (to be clear nothing should *break*). I intend to address this as best as I can as I find different compatibility issues.
 * Currently incompatible with Artifact Of Potential due to how that mod hooks.
