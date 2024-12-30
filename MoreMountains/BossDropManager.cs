@@ -114,6 +114,7 @@ namespace MoreMountains
                 }
                 _teleporterBossPosition = self.dropPosition.position;
             }
+            orig(self);
         }
 
         [Server]

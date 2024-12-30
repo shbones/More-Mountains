@@ -34,7 +34,7 @@ namespace MoreMountains
         //If we see this PluginGUID as it is on thunderstore, we will deprecate this mod. Change the PluginAuthor and the PluginName !
         public const string PluginAuthor = "shbones";
         public const string PluginName = "MoreMountains";
-        public const string PluginVersion = "1.1.2";
+        public const string PluginVersion = "1.1.3";
         public const string PluginGUID = PluginAuthor + "." + PluginName;
 
         //The Awake() method is run at the very start when the game is initialized.

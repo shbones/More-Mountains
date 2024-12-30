@@ -1,4 +1,16 @@
 # Changelog
+## 1.1.3
+  * Bugfix to work with new Warbonds (thanks to Green Zac for the report!)
+## 1.1.2
+	* Fix for potential issue when scaling mountain shrine weight
+## 1.1.1
+	* SOTS Update
+## 1.1.0
+	* Fix bug where red/yellow drops from shrines were not reset at stage start if they were not claimed on previous stage.
+## 1.0.9
+	* Change config tooltip to reflect that stacks are *additional* stacks added onto the base of 1 mountain shrine of difficulty.
+## 1.0.8
+	* Added Compatibility for RiskyArtifacts' Artifact of Arrogance.
 ## 1.0.7
 	* No functional changes
 	* Removed call to DestroyImmediate
