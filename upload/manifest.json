@@ -5,7 +5,7 @@
     "description": "Alternate Mountain Shrines. (AC Compat Update)",
   "dependencies": [
     "bbepis-BepInExPack-5.4.2102",
-    "RiskofThunder-R2API_Language-1.1.1",
+    "RiskofThunder-R2API_Language-1.1.0",
     "RiskofThunder-R2API_Prefab-1.1.1",
     "RiskofThunder-R2API_Director-2.3.7",
     "RiskofThunder-HookGenPatcher-1.2.3"
