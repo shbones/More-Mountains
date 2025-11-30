@@ -1,5 +1,5 @@
 # Changelog
-## 1.1.4
+## 1.2.0
   * Alloyed Collective Compatibility Update
   * Improved Visuals on Teleporter Icons to blend with Mountain Icon Stacking from DLC3
   * Deprecated Compatibility with RiskyArtificts Artifact of Arrogance due to vanilla changes

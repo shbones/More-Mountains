@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace MoreMountains
 {
@@ -34,7 +35,7 @@ namespace MoreMountains
         //If we see this PluginGUID as it is on thunderstore, we will deprecate this mod. Change the PluginAuthor and the PluginName !
         public const string PluginAuthor = "shbones";
         public const string PluginName = "MoreMountains";
-        public const string PluginVersion = "1.1.3";
+        public const string PluginVersion = "1.2.0";
         public const string PluginGUID = PluginAuthor + "." + PluginName;
 
         //The Awake() method is run at the very start when the game is initialized.
@@ -67,6 +68,11 @@ namespace MoreMountains
             new MoreMountainsConfigManager().Init(Paths.ConfigPath);
             BossDropManager DropManager = new BossDropManager();
             DropManager.Init();
+            ShrineActivationTracker ActivationTracker = new ShrineActivationTracker();
+            ActivationTracker.Init();
+            BossShrineCounterHooks.Hook();
+            Run.onRunStartGlobal += ResetRunShrinesHit;
+            Stage.onStageStartGlobal += ResetStageShrinesHit;
         }
 
         private GameObject ReplaceVanillaMountains(On.RoR2.DirectorCore.orig_TrySpawnObject orig, DirectorCore self, DirectorSpawnRequest spawnRequest)
@@ -97,15 +103,43 @@ namespace MoreMountains
 
         private void SpawnCardSubscription(DirectorCard card, ref float weight)
         {
-            if (card.spawnCard.name.Contains("iscShrineBossCrimson")) {
+            if (card.spawnCard.name.Contains("iscShrineBossCrimson"))
+            {
                 _crimsonSpawnCard = (InteractableSpawnCard)card.spawnCard;
-            } else if (card.spawnCard.name.Contains("iscShrineBossAmber"))
+            }
+            else if (card.spawnCard.name.Contains("iscShrineBossAmber"))
             {
                 _amberSpawnCard = (InteractableSpawnCard)card.spawnCard;
             }
             else if (card.spawnCard.name.Contains("iscShrineBoss"))
             {
                 weight = weight * MoreMountainsConfigManager.VanillaMountainSpawnWeightMultiplier.Value;
+            }
+        }
+
+
+        private void ResetRunShrinesHit(Run obj)
+        {
+            ShrineActivationTracker.crimsonShrinesHit = 0;
+            ShrineActivationTracker.amberShrinesHit = 0;
+            BossDropManager.NumberRedDropsForStage = 0;
+            BossDropManager.NumberYellowDropsForStage = 0;
+        }
+
+        private void ResetStageShrinesHit(Stage obj)
+        {
+            if (RunArtifactManager.instance != null && RunArtifactManager.instance.IsArtifactEnabled(DLC3Content.Artifacts.Prestige))
+            {
+                Log.LogInfo("Presige is enabled, not resetting mountain trackers.");
+                BossDropManager.NumberRedDropsForStage = BossDropManager.NumberRedDropsForRun;
+                BossDropManager.NumberYellowDropsForStage = BossDropManager.NumberYellowDropsForRun;
+            }
+            else
+            {
+                ShrineActivationTracker.crimsonShrinesHit = 0;
+                ShrineActivationTracker.amberShrinesHit = 0;
+                BossDropManager.NumberRedDropsForStage = 0;
+                BossDropManager.NumberYellowDropsForStage = 0;
             }
         }
     }

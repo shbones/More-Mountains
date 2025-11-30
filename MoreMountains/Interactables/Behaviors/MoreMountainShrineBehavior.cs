@@ -52,10 +52,6 @@ namespace MoreMountains.Interactables
             {
                 Log.LogDebug("Adding " + NumberOfMountainDirectorStacksToAdd + " mountain stacks.");
                 TeleporterInteraction.instance.AddShrineStack();
-                for (int i = 0; i < NumberOfMountainDirectorStacksToAdd; ++i)
-                {
-                    ++TeleporterInteraction.instance.shrineBonusStacks;
-                }
                 Log.LogDebug("ShrineBonusStacks = " + TeleporterInteraction.instance.shrineBonusStacks);
             }
             CharacterBody component = interactor.GetComponent<CharacterBody>();
@@ -73,6 +69,7 @@ namespace MoreMountains.Interactables
             }, true);
             this.refreshTimer = 2f;
             BossDropManager.Instance.AddMoreMountainReward(this.gameObject.name);
+            ShrineActivationTracker.Instance.TrackVariantMountainShrineHit(this.gameObject.name);
             SetShrineEnabled(false);
         }
 

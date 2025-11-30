@@ -61,9 +61,35 @@ namespace MoreMountains.Interactables
             stageList.Add(DirectorAPI.Stage.SiphonedForest);
             stageList.Add(DirectorAPI.Stage.RallypointDelta);
             stageList.Add(DirectorAPI.Stage.AbandonedAqueduct);
+            stageList.Add(DirectorAPI.Stage.WetlandAspect);
+            stageList.Add(DirectorAPI.Stage.GildedCoast);
+            stageList.Add(DirectorAPI.Stage.MomentFractured);
+            stageList.Add(DirectorAPI.Stage.Bazaar);
+            stageList.Add(DirectorAPI.Stage.VoidCell);
+            stageList.Add(DirectorAPI.Stage.MomentWhole);
+            stageList.Add(DirectorAPI.Stage.Commencement);
+            stageList.Add(DirectorAPI.Stage.ThePlanetarium);
+            stageList.Add(DirectorAPI.Stage.VoidLocus);
+            stageList.Add(DirectorAPI.Stage.VerdantFalls);
+            stageList.Add(DirectorAPI.Stage.ViscousFalls);
+            stageList.Add(DirectorAPI.Stage.ShatteredAbodes);
+            stageList.Add(DirectorAPI.Stage.DisturbedImpact);
+            stageList.Add(DirectorAPI.Stage.ReformedAltar);
+            stageList.Add(DirectorAPI.Stage.TreebornColony);
+            stageList.Add(DirectorAPI.Stage.GoldenDieback);
+            stageList.Add(DirectorAPI.Stage.HelminthHatchery);
+            stageList.Add(DirectorAPI.Stage.PrimeMeridian);
+            stageList.Add(DirectorAPI.Stage.ComputationalExchange);
+            stageList.Add(DirectorAPI.Stage.ConduitCanyon);
+            stageList.Add(DirectorAPI.Stage.IronAlluvium);
+            stageList.Add(DirectorAPI.Stage.IronAuroras);
+            stageList.Add(DirectorAPI.Stage.PretendersPrecipice);
+            stageList.Add(DirectorAPI.Stage.RepurposedCrater);
+            stageList.Add(DirectorAPI.Stage.NeuralSanctum);
+            stageList.Add(DirectorAPI.Stage.SolutionalHaunt);
 
             return stageList;
-
         }
+
     }
 }
