@@ -1,10 +1,12 @@
 # Changelog
-## 1.1.4
-  * Alloyed Collective Compatibility Update
-  * Improved Visuals on Teleporter Icons to blend with Mountain Icon Stacking from DLC3
-  * Deprecated Compatibility with RiskyArtificts Artifact of Arrogance due to vanilla changes
+## 1.2.1
+	* Avoid blocking Addressables in Awake by removing WaitForCompletion
+## 1.2.0
+	* Alloyed Collective Compatibility Update
+	* Improved Visuals on Teleporter Icons to blend with Mountain Icon Stacking from DLC3
+	* Deprecated Compatibility with RiskyArtificts Artifact of Arrogance due to vanilla changes
 ## 1.1.3
-  * Bugfix to work with new Warbonds (thanks to Green Zac for the report!)
+	* Bugfix to work with new Warbonds (thanks to Green Zac for the report!)
 ## 1.1.2
 	* Fix for potential issue when scaling mountain shrine weight
 ## 1.1.1

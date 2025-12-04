@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 
 namespace MoreMountains
@@ -35,27 +36,36 @@ namespace MoreMountains
         //If we see this PluginGUID as it is on thunderstore, we will deprecate this mod. Change the PluginAuthor and the PluginName !
         public const string PluginAuthor = "shbones";
         public const string PluginName = "MoreMountains";
-        public const string PluginVersion = "1.2.0";
+        public const string PluginVersion = "1.2.1";
         public const string PluginGUID = PluginAuthor + "." + PluginName;
 
         //The Awake() method is run at the very start when the game is initialized.
         public void Awake()
         {
             InitPlugin();
-            InitNewMountainShrines();
-            DirectorCardCategorySelection.calcCardWeight += this.SpawnCardSubscription;
-            On.RoR2.DirectorCore.TrySpawnObject += ReplaceVanillaMountains;
-            Log.LogInfo(PluginGUID + " initialized.");
+            Log.LogDebug("Beginning MoreMountains Init");
+
+            var handler = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ShrineBoss/ShrineBoss.prefab");
+            handler.Completed += mountainShrineLoadRequest =>
+            {
+                Log.LogDebug("Mountain Shrine Prefab Loaded");
+                InitNewMountainShrines(mountainShrineLoadRequest.Result);
+                InitHooks();
+                DirectorCardCategorySelection.calcCardWeight += this.SpawnCardSubscription;
+                On.RoR2.DirectorCore.TrySpawnObject += ReplaceVanillaMountains;
+                Log.LogInfo(PluginGUID + " initialized.");
+            };
         }
 
-        private void InitNewMountainShrines()
+
+        private void InitNewMountainShrines(GameObject mountainShrinePrefab)
         {
             var InteractableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(MoreMountainShrineBase)));
             Log.LogInfo("-----------------Initializing More Mountains---------------------");
             foreach (var interactableType in InteractableTypes)
             {
                 MoreMountainShrineBase interactable = (MoreMountainShrineBase)Activator.CreateInstance(interactableType);
-                interactable.Init(Config);
+                interactable.Init(Config, mountainShrinePrefab);
 
                 Log.LogDebug("Interactable: " + interactable.InteractableName + " Initialized!");
             }
@@ -66,6 +76,10 @@ namespace MoreMountains
             Log.Init(Logger);
             thePluginInfo = Info;
             new MoreMountainsConfigManager().Init(Paths.ConfigPath);
+        }
+
+        private void InitHooks()
+        {
             BossDropManager DropManager = new BossDropManager();
             DropManager.Init();
             ShrineActivationTracker ActivationTracker = new ShrineActivationTracker();

@@ -48,16 +48,15 @@ namespace MoreMountains.Interactables
 
         public InteractableSpawnCard InteractableSpawnCard;
 
-        public void Init(ConfigFile config)
+        public void Init(ConfigFile config, GameObject mountainShrinePrefab)
         {
-            CreateFromMountainPrefab();
+            CreateFromMountainPrefab(mountainShrinePrefab);
             CreateInteractableSpawnCard(InteractableBodyModelPrefab, SpawnCardName, MountainShrineUtil.GetAllStageList());
             CreateLang();
         }
 
-        private void CreateFromMountainPrefab()
+        private void CreateFromMountainPrefab(GameObject mountainShrine)
         {
-            GameObject mountainShrine = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ShrineBoss/ShrineBoss.prefab").WaitForCompletion();
             InteractableModel = PrefabAPI.InstantiateClone(mountainShrine, PrefabName);
 
             var vanillaShrineBossBehavior = InteractableModel.GetComponent<ShrineBossBehavior>();
