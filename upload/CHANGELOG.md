@@ -1,4 +1,6 @@
 # Changelog
+## 1.2.2
+	* Revert to 1.2.0.
 ## 1.2.1
 	* Avoid blocking Addressables in Awake by removing WaitForCompletion
 ## 1.2.0
