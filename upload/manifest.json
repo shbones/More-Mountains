@@ -1,13 +1,13 @@
 {
   "name": "MoreMountains",
-  "version_number": "1.2.2",
+  "version_number": "1.2.3",
   "website_url": "https://github.com/shbones/More-Mountains",
-  "description": "Alternate Mountain Shrines. (AC Compat Update)",
+  "description": "Alternate Mountain Shrines. (Hallowed Concepts Compat Update)",
   "dependencies": [
-    "bbepis-BepInExPack-5.4.2102",
+    "bbepis-BepInExPack-5.4.2122",
     "RiskofThunder-R2API_Language-1.1.0",
     "RiskofThunder-R2API_Prefab-1.1.1",
-    "RiskofThunder-R2API_Director-2.3.7",
-    "RiskofThunder-HookGenPatcher-1.2.3"
+    "RiskofThunder-R2API_Director-3.1.1",
+    "RiskofThunder-HookGenPatcher-1.2.9"
   ]
 }

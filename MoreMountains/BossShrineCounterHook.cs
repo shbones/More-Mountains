@@ -1,5 +1,6 @@
 ﻿using RoR2;
 using RoR2BepInExPack.GameAssetPathsBetter;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MoreMountains
@@ -18,33 +19,40 @@ namespace MoreMountains
             int redShrinesHit = ShrineActivationTracker.crimsonShrinesHit;
             int yellowShrinesHit = ShrineActivationTracker.amberShrinesHit;
 
-            for (int i = self.targetTransform.childCount - 1; i >= 0; i--)
+            // Collect only the mountain symbols, ignoring hex symbols from Hex of Strife
+            var mountainSymbols = new List<MeshRenderer>();
+            for (int i = 0; i < self.targetTransform.childCount; i++)
+            {
+                var mr = self.targetTransform.GetChild(i).GetComponent<MeshRenderer>();
+                if (mr != null && !IsHexSymbol(mr))
+                    mountainSymbols.Add(mr);
+            }
+
+            for (int i = mountainSymbols.Count - 1; i >= 0; i--)
             {
                 if (redShrinesHit <= 0 && yellowShrinesHit <= 0)
                     break;
 
-                Transform indicator = self.targetTransform.GetChild(i);
-                Transform symbol = indicator.Find("ShrineBossSymbol");
-                if (!symbol)
-                    continue;
+                MeshRenderer mr = mountainSymbols[i];
+                mr.material = new Material(mr.material);
 
-                MeshRenderer mr = symbol.GetComponent<MeshRenderer>();
-                if (mr != null)
+                if (redShrinesHit > 0)
                 {
-                    mr.material = new Material(mr.material);
-
-                    if (redShrinesHit > 0)
-                    {
-                        mr.material.SetColor("_TintColor", Color.red);
-                        redShrinesHit--;
-                    }
-                    else
-                    {
-                        mr.material.SetColor("_TintColor", Color.yellow);
-                        yellowShrinesHit--;
-                    }
+                    mr.material.SetColor("_TintColor", Color.red);
+                    redShrinesHit--;
+                }
+                else
+                {
+                    mr.material.SetColor("_TintColor", Color.yellow);
+                    yellowShrinesHit--;
                 }
             }
+        }
+
+        private static bool IsHexSymbol(MeshRenderer mr)
+        {
+            var mat = mr.sharedMaterial;
+            return mat != null && mat.name.Contains("Hex");
         }
 
     }

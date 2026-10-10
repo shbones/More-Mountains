@@ -1,4 +1,7 @@
 # Changelog
+## 1.2.3
+	* Hallowed Concepts Compatibility Update
+	* Fix Mountain icon stacking on teleporter for compatibility with Hex of Strife
 ## 1.2.2
 	* Revert to 1.2.0.
 ## 1.2.1
